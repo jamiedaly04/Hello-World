@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Word_Unscrambler.Data;
 
 namespace Word_Unscrambler
 {
     class Program
     {
+        private const string wordListFileName = "Wordlist.txt";
+        private static readonly FileReader fileReader = new FileReader();
+        private static readonly WordMatcher wordMatcher = new WordMatcher();
+
         static void Main(string[] args)
         {
 
@@ -53,12 +58,36 @@ namespace Word_Unscrambler
 
         private static void ExecuteScrambledFileMethod()
         {
-            
+            var filename = Console.ReadLine() ?? string.Empty;
+            string[] scrambledWords = fileReader.Read(filename);
+            DisplayMatchedUnscrambledWords(scrambledWords);
         }
 
         private static void ExecuteManualScrambledWordsMethod()
         {
-            
+            var manualWords = Console.ReadLine() ?? string.Empty;
+            string[] scrambledWords = manualWords.Split(',');
+            DisplayMatchedUnscrambledWords(scrambledWords);
+        }
+
+        private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
+        {
+            string[] wordList = fileReader.Read(wordListFileName);
+
+            List<MatchedWord> matchedWords = wordMatcher.Match(scrambledWords, wordList);
+
+            if (matchedWords.Any())
+            {
+                foreach (var matchedWord in matchedWords)
+                {
+                    Console.WriteLine("Match found for {0}: {1}", matchedWord.scrambledWords, matchedWord.Word);
+                }
+
+            } else
+            {
+                Console.WriteLine("No matches found.");
+            }
+
         }
     }
 }
