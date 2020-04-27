@@ -9,3 +9,5 @@ C:\Users\Jamie\source\repos\Word Unscrambler\obj\Debug\netcoreapp3.1\Word Unscra
 C:\Users\Jamie\source\repos\Word Unscrambler\obj\Debug\netcoreapp3.1\Word Unscrambler.AssemblyInfo.cs
 C:\Users\Jamie\source\repos\Word Unscrambler\obj\Debug\netcoreapp3.1\Word Unscrambler.dll
 C:\Users\Jamie\source\repos\Word Unscrambler\obj\Debug\netcoreapp3.1\Word Unscrambler.pdb
+C:\Users\Jamie\source\repos\Word Unscrambler\bin\Debug\netcoreapp3.1\RandomWords.txt
+C:\Users\Jamie\source\repos\Word Unscrambler\bin\Debug\netcoreapp3.1\Wordlist.txt

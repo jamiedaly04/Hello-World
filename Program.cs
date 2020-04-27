@@ -25,7 +25,7 @@ namespace Word_Unscrambler
                 switch (option.ToUpper())
                 {
                     case "M":
-                        Console.WriteLine("Enter your scrambled words: ");
+                        Console.WriteLine("Enter your scrambled words (Separated by comma): ");
                         ExecuteManualScrambledWordsMethod();
                         break;
                     case "F":
@@ -42,7 +42,7 @@ namespace Word_Unscrambler
                 do
                 {
                     Console.WriteLine("Do you want to continue? Y/N");
-                    continueDecision = (Console.ReadLine() ?? string.Empty);
+                    continueDecision = Console.ReadLine() ?? string.Empty;
                 } while (!continueDecision.Equals("Y", StringComparison.OrdinalIgnoreCase) &&
                          !continueDecision.Equals("N", StringComparison.OrdinalIgnoreCase));
 
@@ -55,26 +55,31 @@ namespace Word_Unscrambler
             } while (continueApp);
 
         }
-
-        private static void ExecuteScrambledFileMethod()
-        {
-            var filename = Console.ReadLine() ?? string.Empty;
-            string[] scrambledWords = fileReader.Read(filename);
-            DisplayMatchedUnscrambledWords(scrambledWords);
-        }
-
         private static void ExecuteManualScrambledWordsMethod()
         {
             var manualWords = Console.ReadLine() ?? string.Empty;
             string[] scrambledWords = manualWords.Split(',');
             DisplayMatchedUnscrambledWords(scrambledWords);
         }
+        private static void ExecuteScrambledFileMethod()
+        {
+            try
+            {
+                var filename = Console.ReadLine() ?? string.Empty;
+                string[] scrambledWords = fileReader.Read(filename);
+                DisplayMatchedUnscrambledWords(scrambledWords);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
         private static void DisplayMatchedUnscrambledWords(string[] scrambledWords)
         {
             string[] wordList = fileReader.Read(wordListFileName);
 
-            List<MatchedWord> matchedWords = wordMatcher.Match(scrambledWords, wordList);
+            List<MatchedWords> matchedWords = wordMatcher.Match(scrambledWords, wordList);
 
             if (matchedWords.Any())
             {

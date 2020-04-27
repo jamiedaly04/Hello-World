@@ -6,4 +6,13 @@
     <RootNamespace>Word_Unscrambler</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="RandomWords.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Wordlist.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

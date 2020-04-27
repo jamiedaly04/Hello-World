@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Word_Unscrambler
 {
     class FileReader
     {
-        internal string[] Read(string wordListFileName)
+        public string[] Read(string filename)
         {
-            throw new NotImplementedException();
+            string[] fileContent;
+
+            try
+            {
+                fileContent = File.ReadAllLines(filename);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+
+            return fileContent;
         }
     }
 }
